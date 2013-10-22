@@ -44,36 +44,51 @@
 
 #pragma  mark - Initialization Routines
 
+-(void) commonInit{
+    tempRepresentations = [[NSMutableArray alloc] init];
+    previousPageIndex = 0;
+    
+    self.clipsToBounds = YES;
+    
+    scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
+    scrollView.pagingEnabled = YES;
+    scrollView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    scrollView.clipsToBounds = NO;
+    scrollView.showsHorizontalScrollIndicator = NO;
+    scrollView.delegate = self;
+    
+    if (self.displayBorder)
+    {
+        scrollView.layer.borderColor = [UIColor greenColor].CGColor;
+        scrollView.layer.borderWidth = 2;
+    }
+    
+    scrollView.backgroundColor = [UIColor blueColor];
+    self.backgroundColor = [UIColor cyanColor];
+    
+    self.pageWidth = 50;
+    self.currentPageIndex = 0;
+    self.allowTapToChangePage = YES;
+    
+    [self addSubview:scrollView];
+    
+}
+
+-(id)initWithCoder:(NSCoder *)aDecoder{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+
+
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        tempRepresentations = [[NSMutableArray alloc] init];
-        previousPageIndex = 0;
-        
-        self.clipsToBounds = YES;
-        
-        scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
-        scrollView.pagingEnabled = YES;
-        scrollView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-        scrollView.clipsToBounds = NO;
-        scrollView.showsHorizontalScrollIndicator = NO;
-        scrollView.delegate = self;
-        
-        if (self.displayBorder)
-        {
-            scrollView.layer.borderColor = [UIColor greenColor].CGColor;
-            scrollView.layer.borderWidth = 2;
-        }
-        
-        scrollView.backgroundColor = [UIColor blueColor];
-        self.backgroundColor = [UIColor cyanColor];
-        
-        self.pageWidth = 50;
-        self.currentPageIndex = 0;
-        self.allowTapToChangePage = YES;
-        
-        [self addSubview:scrollView];
+        [self commonInit];
     }
     return self;
 }
