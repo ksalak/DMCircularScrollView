@@ -63,7 +63,7 @@
         scrollView.layer.borderWidth = 2;
     }
     
-    scrollView.backgroundColor = [UIColor blueColor];
+    scrollView.backgroundColor = [UIColor yellowColor];
     self.backgroundColor = [UIColor cyanColor];
     
     self.pageWidth = 50;
@@ -295,7 +295,8 @@
     {
         visiblePages += 1;
     }
-
+    visiblePages += 1;
+    
     [scrollView setContentSize:CGSizeMake(self.pageSize.width*visiblePages, scrollView.frame.size.height)];
     
     if (dataSource != nil) {
