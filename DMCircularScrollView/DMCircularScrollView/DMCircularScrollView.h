@@ -34,4 +34,10 @@ typedef void(^DMCircularScrollViewPageChanged)(NSUInteger currentPageIndex,NSUIn
 // Probability you don't need of it never
 - (void) reloadData;
 
+-(IBAction)goNext:(id)sender;
+-(IBAction)goBack:(id)sender;
+
+-(void)goNextAnimated:(BOOL)animated;
+-(void)goBackAnimated:(BOOL)animated;
+
 @end

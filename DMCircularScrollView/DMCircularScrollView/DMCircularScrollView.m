@@ -157,6 +157,24 @@
     return ((self.frame.size.width/self.pageSize.width)-1);
 }
 
+#pragma mark - Actions
+
+-(void)goBackAnimated:(BOOL)animated{
+    [scrollView setContentOffset:CGPointMake(scrollView.contentOffset.x - self.pageWidth, 0) animated:animated];
+}
+
+-(void)goNextAnimated:(BOOL)animated{
+    [scrollView setContentOffset:CGPointMake(scrollView.contentOffset.x + self.pageWidth, 0) animated:animated];
+}
+
+-(void)goBack:(id)sender{
+    [self goBackAnimated:YES];
+}
+
+-(void)goNext:(id)sender{
+    [self goNextAnimated:YES];
+}
+
 #pragma mark - Handle Tap To Change Page
 
 - (void)singleTapGestureCaptured:(UITapGestureRecognizer *)gesture {
