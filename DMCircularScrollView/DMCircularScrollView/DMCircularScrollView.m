@@ -347,6 +347,11 @@
 }
 
 - (NSMutableArray *) viewsFromIndex:(NSUInteger) centralIndex preloadOffset:(NSUInteger) offsetLeftRight {
+    
+    if (!dataSource){
+        return nil;
+    }
+    
     NSMutableArray *viewsList = [[NSMutableArray alloc] initWithCapacity:(offsetLeftRight*2)+1];
     NSMutableArray *indexesList = [self circularPageIndexesFrom:centralIndex byAddingOffset:-offsetLeftRight];
     [indexesList addObject:[NSNumber numberWithInt:centralIndex]];
@@ -354,6 +359,10 @@
     
     [indexesList enumerateObjectsUsingBlock:^(NSNumber* viewIndex, NSUInteger idx, BOOL *stop) {
         NSUInteger indexOfView = [viewIndex intValue];
+        
+        if (indexOfView == NSUIntegerMax) {
+            return ;
+        }
         
         UIView *targetView = dataSource(indexOfView);
         targetView.tag = indexOfView;
